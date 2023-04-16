@@ -1,30 +1,24 @@
 import java.util.*;
-class sudokuBase {
-    public static int askDifficulty(){   /** This method asks the user for game difficulty and returns an int according to their choice */
+import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;                                             /**imports needed for GUI */
 
-        int sudokuSize=0;
-
-        System.out.println("Choose a difficulty Beginner/Casual/Advanced");    
-        Scanner sc=new Scanner(System.in);
-        String difficulty=sc.nextLine();                                          /** Scanning user input from scanner */
-
-        if (difficulty.equalsIgnoreCase("beginner")){
-            sudokuSize=4;                                                         /** Setting grid size */
-        } 
-        else if (difficulty.equalsIgnoreCase("casual")){
-            sudokuSize=9;                                                         /** Setting grid size */
-        } 
-        else if (difficulty.equalsIgnoreCase("advanced")){
-            sudokuSize=16;                                                        /** Setting grid size */
-        }
-        else {
-            System.out.println("You need to write a valid difficulty level");   /** goes to else when user input doesn't match if/if else statements */
-        }
-        return sudokuSize;                                                        /** Returning size for the generateGrid method */
-    }
+import javax.swing.*;
+public class sudokuBase implements ActionListener{
+   
     public static void generateGrid(int sudokuSize){
+        int sudokuGrid [][]=new int [0][0];                                     /** I left the sudokugrid here to visualize that we could spawn a grid in this methog */  
 
-        int sudokuGrid [][]=new int [sudokuSize][sudokuSize];                    /** Making sudoku grid according to the return value of askDifficulty */
+       
+    }
+    public static void main (String[]args){                                      /** Added the main method for running the program */
+        difficultyGUI diffGui=new difficultyGUI();                               /** Instance of the class is created in order to run the main method */
+        diffGui.main(args);                                                      /** Syntax for running the main method */
+
+    }
+    public void actionPerformed(ActionEvent a){                                  /** This is here just in case we build the GUI onto this file and not a separate one */
+        
+        
 
     }
 }
