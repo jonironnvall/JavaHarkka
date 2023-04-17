@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -22,31 +23,32 @@ public class difficultyGUI implements ActionListener {
         panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));  /** Setting the border of the panel */
         
         frame.add(panel, BorderLayout.CENTER);                     /** Border layout still in progress, but is set to center for now */
+        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      /** Setting what happends from the X */
         frame.setTitle("LobsterSudoku");
-        frame.pack();
         frame.setVisible(true);                                 /** Makes the window "Excist" */
 
         difficultyLabel=new JLabel("Choose difficulty");       /** Text label */
-        difficultyLabel.setBounds(10,30,90,10);
-        panel.add(difficultyLabel);                                /** Adding label to the panel aka the layout */
+        difficultyLabel.setBounds(0,10,90,10);
+        //panel.setLayout(new GridLayout());  /** Possible solution to the placement issue */
+        //panel.add(difficultyLabel);   /** Adding label to the panel aka the layout. I commented this away until the placement is decided as this is intefearing with the placement of the buttons*/
 
         userChoice=new JLabel("");                             /** Text label */
-        userChoice.setBounds(10,50,80,10);
+        userChoice.setBounds(80,50,80,10);
         panel.add(userChoice);                                       /** Adding label to the panel aka the layout */
 
         beginnerButton = new JButton("Beginner");
-        beginnerButton.setBounds(10,100,80,50);     /** Button customization */
+        beginnerButton.setBounds(80,80,80,25);     /** Button placement and size customization */
         beginnerButton.addActionListener(new difficultyGUI());
         panel.add(beginnerButton);                                  /** Adding button to the panel */
 
         casualButton = new JButton("Casual");                  
-        casualButton.setBounds(10,80,80,25);       /** Button customization */
+        casualButton.setBounds(80,100,80,25);       /** Button placement and size customization */
         casualButton.addActionListener(new difficultyGUI());       
         panel.add(casualButton);                                    /** Adding button to the panel */
 
         advancedButton = new JButton("Advanced");
-        advancedButton.setBounds(10,80,80,25);     /** Button customization */
+        advancedButton.setBounds(10,120,80,25);     /** Button placement and size customization */
         advancedButton.addActionListener(new difficultyGUI());
         panel.add(advancedButton);                                 /** Adding button to the panel */
 
@@ -76,7 +78,8 @@ public class difficultyGUI implements ActionListener {
 
         }
         /**These if statements are here to determine the next step in the program: 
-         * Which ever button the user presses will lead them to a different method based on the difficulty level
+         * Which ever button the user presses will lead them to a different difficulty level sudoku
+         * What kinds of return values could we assign here to determine the grid generation according to level selection?
          * !!THIS PART STILL NEEDS WORK AND DISCUSSION 
          */
 
