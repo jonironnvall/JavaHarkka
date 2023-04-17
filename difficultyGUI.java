@@ -57,12 +57,22 @@ public class difficultyGUI implements ActionListener {
         if (e.getSource()==beginnerButton){
             
             userChoice.setText("You chose the beginner difficulty:");
+            sudokuBase sdkbase=new sudokuBase();
+            sdkbase.generateGrid(4);   /** Here we call the grid method from the class sudokubase */
+            frame.setVisible(false);            /** Here we set the difficulty window to close when user has chosen a level */
+            
         }
         else if (e.getSource()==casualButton){
             userChoice.setText("You chose the casual difficulty:");
+            sudokuBase sdkbase=new sudokuBase();
+            sdkbase.generateGrid(4);   /** Here we call the grid method from the class sudokubase */
+            frame.setVisible(false);            /** Here we set the difficulty window to close when user has chosen a level */
         }
         else if (e.getSource()==advancedButton){
             userChoice.setText("You chose the advanced difficulty:");
+            sudokuBase sdkbase=new sudokuBase();
+            sdkbase.generateGrid(4);   /** Here we call the grid method from the class sudokubase */
+            frame.setVisible(false);            /** Here we set the difficulty window to close when user has chosen a level */
 
         }
         /**These if statements are here to determine the next step in the program: 
