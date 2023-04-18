@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;    
 import java.awt.GridLayout;                                         /**imports needed for GUI */
+import java.util.Random;
 
 
 import javax.swing.*;
@@ -10,9 +11,9 @@ public class sudokuBase implements ActionListener{
     private static JFrame frame;
     private static JPanel panel;
     private static JTextField [][] textFields;     /** !!PLEASE NOTE: THIS HERE IS THE PART WHERE YOU CAN USE ANY DATA TYPE LIKE ARRAYS. CHANGE THIS IF YOU WISH TO USE A DIFFERENT DATATYPE FROM 2D ARRAYS!! */
-    private static int row;
-    private static int column;
     private static JTextField textField;
+    private static JLabel machineNumber;
+    private static boolean [][] numberPlacements;
    
     public void generateGrid(int sudokuSize){
         frame=new JFrame();
@@ -22,19 +23,28 @@ public class sudokuBase implements ActionListener{
         //panel=new JPanel();
 
        textFields=new JTextField[9][9];    /** Setting up the array */
+       numberPlacements=new boolean[9][9];    /** Setting up the placements of the numbers */
 
         for (int row=0;row<9;row++){
             frame.setLayout(new GridLayout(9,9));   /** This creates the sudoku grid */
+            Random rand=new Random();          
+            int myRandom=rand.nextInt(9)+1;   /** Random number generator could be an external method, but it does function here as well it still needs to have boundaries and limits set so that it doesn't for example spawn the same number twice in the same 9x9 grid. */
+           /**  frame.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));  This is here to set the border in between boxes. Still a bit in the dark how it's done*/
             for (int column=0;column<9;column++){             /** This creates the contents of the grid where user can input numbers */
-                //frame.add(new JTextField(column));          /** Possibly another way to add these columns, still under work */
+                if (myRandom==column){                        /** Could the checking method be called here or should we fill the array with numbers in a separate method? */
+                    machineNumber=new JLabel(Integer.toString(myRandom));  /** Note that these need to be converted back to integers when worked with, JLabel only holds strings */
+                    numberPlacements[row][column]=true;       /** This array can be used for checking the number placements as it changes every machine filled "alkio" value to true  */
+                    frame.add(machineNumber);                 /** JLabels are added to the program */
+                } else {
                 textField=new JTextField(column); 
                 textFields[row][column]=textField;
                 textField.addActionListener(new sudokuBase());  /** Adds this class as the actionlistener everything happening in this class is tied to the actionperformed method and should be handled there */
                 frame.add(textField);                           /** Adds textfield to the frame aka makes it visible */
+                }
             }
         }
-        
-    }
+       // return numberPlacements;  /** Just an idea, but you could use this return value to determine the said coordinates of the values that need to be checked for */
+    } /** NEVERMIND!! This method apparelty has to be void or it affects the functionality of the GUI.. But the boolean list could make sense when finding the spots. Also the getsource method could work in the action performed method as it can also find the placements. It could be worth looking into */
 
     
     public static void main (String[]args){                                      /** Added the main method for running the program */
