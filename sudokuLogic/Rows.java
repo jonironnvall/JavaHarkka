@@ -1,7 +1,7 @@
 package sudokuLogic;
 
 
-public enum Rows {
+public enum rows {
     TOP,
     MIDDLE,
     BOTTOM

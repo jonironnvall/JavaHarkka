@@ -5,21 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import sudokuLogic.Coordinates;
-import sudokuLogic.Rows;
+import sudokuLogic.coordinates;
+import sudokuLogic.rows;
 
 
 
 public class gameGenerator {
-
-
-
-    public static void main (String[]args){
-    solvedGameGeneration();
-    System.out.println("Ohjelma on päättynyt");
-
-
-    }
 
 
     public static int[][] solvedGameGeneration() {
@@ -30,7 +21,7 @@ public class gameGenerator {
             int allocations = 0;
             int interrupt = 0;
             int tries = 0;
-            List<Coordinates> allocTracker = new ArrayList<>();
+            List<coordinates> allocTracker = new ArrayList<>();
 
             tries++;
 
@@ -61,7 +52,7 @@ public class gameGenerator {
                     interrupt++;
             }
             else {
-                allocTracker.add(new Coordinates(xCoordinate, yCoordinate));
+                allocTracker.add(new coordinates(xCoordinate, yCoordinate));
                 allocations++;
                 }
              }
@@ -132,11 +123,11 @@ public static boolean collectionHasRepeats(List<Integer> collection) {
 
 
 public static boolean squaresAreInvalid(int[][] grid) {
-    if (rowOfSquaresIsInvalid(Rows.TOP, grid)) return true;
+    if (rowOfSquaresIsInvalid(rows.TOP, grid)) return true;
 
-    if (rowOfSquaresIsInvalid(Rows.MIDDLE, grid)) return true;
+    if (rowOfSquaresIsInvalid(rows.MIDDLE, grid)) return true;
 
-    if (rowOfSquaresIsInvalid(Rows.BOTTOM, grid)) return true;
+    if (rowOfSquaresIsInvalid(rows.BOTTOM, grid)) return true;
 
     return false;
 
@@ -144,7 +135,7 @@ public static boolean squaresAreInvalid(int[][] grid) {
 
 }
 
-private static boolean rowOfSquaresIsInvalid(Rows value, int[][] grid) {
+private static boolean rowOfSquaresIsInvalid(rows value, int[][] grid) {
     switch (value) {
         case TOP:
             if (squareIsInvalid(0, 0, grid)) return true;
