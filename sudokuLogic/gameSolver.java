@@ -14,7 +14,7 @@ public class gameSolver {
             while (index < 10) {
                 coordinates current = emptyCells[index];
                 input = 1;
-                while (input < 40) {
+                while (input < 30) {
                     puzzle[current.getX()][current.getY()] = input;
                     if (gameGenerator.invalidSudoku(puzzle)) {
                         if (index == 0 && input == 9) {
@@ -44,13 +44,13 @@ public class gameSolver {
     
     
     private static coordinates[] beginnerEnumerate(int[][] puzzle){
-        coordinates[] emptyCells = new coordinates[40];
+        coordinates[] emptyCells = new coordinates[30];
         int iterator = 0;
         for(int y = 0; y < 9; y++){
             for(int x = 0; x < 9; x++){
                 if(puzzle[x][y]== 0){
                     emptyCells[iterator] = new coordinates(x,y);
-                    if(iterator == 39) return emptyCells;
+                    if(iterator == 29) return emptyCells;
                     iterator++;
                 }
             }
@@ -132,7 +132,7 @@ return emptyCells;
             while (index < 10) {
                 coordinates current = emptyCells[index];
                 input = 1;
-                while (input < 40) {
+                while (input < 50) {
                     puzzle[current.getX()][current.getY()] = input;
                     if (gameGenerator.invalidSudoku(puzzle)) {
                         if (index == 0 && input == 9) {
@@ -162,13 +162,13 @@ return emptyCells;
     
     
     private static coordinates[] advancedEnumerate(int[][] puzzle){
-        coordinates[] emptyCells = new coordinates[40];
+        coordinates[] emptyCells = new coordinates[50];
         int iterator = 0;
         for(int y = 0; y < 9; y++){
             for(int x = 0; x < 9; x++){
                 if(puzzle[x][y]== 0){
                     emptyCells[iterator] = new coordinates(x,y);
-                    if(iterator == 39) return emptyCells;
+                    if(iterator == 49) return emptyCells;
                     iterator++;
                 }
             }
