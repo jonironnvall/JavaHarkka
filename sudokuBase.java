@@ -24,15 +24,18 @@ public class sudokuBase implements ActionListener{
 
        textFields=new JTextField[9][9];    /** Setting up the array */
        numberPlacements=new boolean[9][9];    /** Setting up the placements of the numbers */
+       int [][] solvedSudokuNumbers = sudokuLogic.gameGenerator.solvedGameGeneration(); /** fully filled array */
+       int [][] sudokuNumbers = sudokuLogic.gameGenerator.unsolveGameBeginner(solvedSudokuNumbers); /** unsolved array */
 
         for (int row=0;row<9;row++){
             frame.setLayout(new GridLayout(9,9));   /** This creates the sudoku grid */
             Random rand=new Random();          
             int myRandom=rand.nextInt(9)+1;   /** Random number generator could be an external method, but it does function here as well it still needs to have boundaries and limits set so that it doesn't for example spawn the same number twice in the same 9x9 grid. */
-           /**  frame.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));  This is here to set the border in between boxes. Still a bit in the dark how it's done*/
-            for (int column=0;column<9;column++){             /** This creates the contents of the grid where user can input numbers */
-                if (myRandom==column){                        /** Could the checking method be called here or should we fill the array with numbers in a separate method? */
-                    machineNumber=new JLabel(Integer.toString(myRandom));  /** Note that these need to be converted back to integers when worked with, JLabel only holds strings */
+                                                     /**  frame.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));  This is here to set the border in between boxes. Still a bit in the dark how it's done*/
+            for (int column=0;column<9;column++){ 
+                int number = sudokuNumbers[row][column];           /** This creates the contents of the grid where user can input numbers */
+                if (number!= 0){                        /** Could the checking method be called here or should we fill the array with numbers in a separate method? */
+                    machineNumber=new JLabel(Integer.toString(number)); /** Note that these need to be converted back to integers when worked with, JLabel only holds strings */
                     numberPlacements[row][column]=true;       /** This array can be used for checking the number placements as it changes every machine filled "alkio" value to true  */
                     frame.add(machineNumber);                 /** JLabels are added to the program */
                 } else {
