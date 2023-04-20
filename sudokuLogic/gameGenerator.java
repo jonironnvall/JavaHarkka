@@ -1,6 +1,5 @@
 package sudokuLogic;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -47,7 +46,7 @@ public class gameGenerator {
             if(newGrid[xCoordinate][yCoordinate] == 0){     /* Assings the value*/
                 newGrid[xCoordinate][yCoordinate] = value;
                 
-                if(invalidsudoku(newGrid)) {                /* Check if the sudoku is not valid so far without looking at the zeroes in the puzzle. */
+                if(invalidSudoku(newGrid)) {                /* Check if the sudoku is not valid so far without looking at the zeroes in the puzzle. */
                     newGrid[xCoordinate][yCoordinate] = 0;  /*If not it sets the value as 0, meaning its an empty unassigned position and it tries again. */
                     interrupt++;                            /* adds 1 to the interrupt - variable*/
             }
@@ -74,12 +73,12 @@ public class gameGenerator {
     }
 
     public static boolean checkForCompletion(int[][] newGrid) {             /* This is used later on just before starting the game, where the program checks one last time just before unsolving it if its solvable and fully filled*/
-        if (invalidsudoku(newGrid)) return false;
+        if (invalidSudoku(newGrid)) return false;
         if (tilesAreNotFilled(newGrid)) return false;
         return true;
     }
 
-public static boolean invalidsudoku(int[][] newGrid){       /* Checking if the sudoku isn't solvable*/
+public static boolean invalidSudoku(int[][] newGrid){       /* Checking if the sudoku isn't solvable*/
     if(rowsAreInvalid(newGrid)) return true;                /* Checking if the rows of the puzzle arent solvable*/
     if(columnsAreInvalid(newGrid)) return true;             /* Checking if the columns of the puzzle arent solvable*/
     if(squaresAreInvalid(newGrid)) return true;             /* Checking if the squares of the puzzle arent solvable*/
@@ -192,6 +191,119 @@ public static boolean tilesAreNotFilled(int[][] grid) {         /*Method to chec
     }
     return false;                                               /*If the tiles are fully filled return false*/
 }   
+
+
+
+
+/* UNSOLVERS FOR ALL EACH DIFFICULTY */
+/*BEGINNER -> */
+
+public static int[][] unsolveGameBeginner(int[][] solvedGame) {
+    Random random = new Random(System.currentTimeMillis());
+
+    boolean solvable = false;
+
+    int[][] solvableArray = new int[9][9];
+
+    while (solvable == false){
+
+        gameUtilities.copySudokuArrayValues(solvedGame, solvableArray);
+
+        int index = 0;
+        while (index < 30) {
+            int xCoordinate = random.nextInt(9);
+            int yCoordinate = random.nextInt(9);
+
+            if (solvableArray[xCoordinate][yCoordinate] != 0) {
+                solvableArray[xCoordinate][yCoordinate] = 0;
+                index++;
+            }
+        }
+
+        int[][] toBeSolved = new int[9][9];
+        gameUtilities.copySudokuArrayValues(solvableArray, toBeSolved);
+        solvable = gameSolver.beginnerIsSolvable(toBeSolved);
+
+        System.out.println(solvable);
+    }
+
+    return solvableArray;
+}
+
+
+
+
+/*CASUAL -> */
+
+public static int[][] unsolveGameCasual(int[][] solvedGame) {
+    Random random = new Random(System.currentTimeMillis());
+
+    boolean solvable = false;
+
+    int[][] solvableArray = new int[9][9];
+
+    while (solvable == false){
+
+        gameUtilities.copySudokuArrayValues(solvedGame, solvableArray);
+
+        int index = 0;
+        while (index < 40) {
+            int xCoordinate = random.nextInt(9);
+            int yCoordinate = random.nextInt(9);
+
+            if (solvableArray[xCoordinate][yCoordinate] != 0) {
+                solvableArray[xCoordinate][yCoordinate] = 0;
+                index++;
+            }
+        }
+
+        int[][] toBeSolved = new int[9][9];
+        gameUtilities.copySudokuArrayValues(solvableArray, toBeSolved);
+        solvable = gameSolver.casualIsSolvable(toBeSolved);
+
+        System.out.println(solvable);
+    }
+
+    return solvableArray;
+}
+
+
+
+/*ADVANCED -> */
+
+public static int[][] unsolveGameAdvanced(int[][] solvedGame) {
+    Random random = new Random(System.currentTimeMillis());
+
+    boolean solvable = false;
+
+    int[][] solvableArray = new int[9][9];
+
+    while (solvable == false){
+
+        gameUtilities.copySudokuArrayValues(solvedGame, solvableArray);
+
+        int index = 0;
+        while (index < 50) {
+            int xCoordinate = random.nextInt(9);
+            int yCoordinate = random.nextInt(9);
+
+            if (solvableArray[xCoordinate][yCoordinate] != 0) {
+                solvableArray[xCoordinate][yCoordinate] = 0;
+                index++;
+            }
+        }
+
+        int[][] toBeSolved = new int[9][9];
+        gameUtilities.copySudokuArrayValues(solvableArray, toBeSolved);
+        solvable = gameSolver.beginnerIsSolvable(toBeSolved);
+
+        System.out.println(solvable);
+    }
+
+    return solvableArray;
+}
+
+
 
 
 }
