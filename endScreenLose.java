@@ -15,7 +15,7 @@ public class endScreenLose implements ActionListener {
 
     public void main(String[] args) {
         frame = new JFrame();
-        frame.setSize(350, 200);
+        frame.setSize(350, 200); /** Frame and its default size */
 
         panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
@@ -26,14 +26,15 @@ public class endScreenLose implements ActionListener {
         frame.setTitle("LobsterSudoku");
         frame.setVisible(true);
 
-        endText = new JLabel("YOU LOST! :(");
+        endText = new JLabel("YOU LOST! :("); /** Text displaying that the player lost the game */
         endText.setBounds(0, 10, 90, 10);
+        panel.add(endText);
 
         userChoice=new JLabel("");
         userChoice.setBounds(80,50,80,10);
         panel.add(userChoice);
 
-        menuButton = new JButton("Back to main menu");
+        menuButton = new JButton("Back to main menu"); /** A button that returns the user back to main menu when pressed */
         menuButton.setBounds(80, 80, 80, 25);
         menuButton.addActionListener(new endScreenWin());
         panel.add(menuButton);
@@ -42,7 +43,7 @@ public class endScreenLose implements ActionListener {
 
         if (e.getSource()==menuButton) {
             
-            userChoice.setText("You chose to go back to main menu:");
+            userChoice.setText("You chose to go back to main menu:"); /** ??? Will do some research */
             sudokuBase sdkbase = new sudokuBase();
             frame.setVisible(false);
 
