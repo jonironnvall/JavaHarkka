@@ -1,0 +1,7 @@
+Thanks for playing our game!
+
+The concept is very simple.
+Firstly choose a difficulty that suits you, the harder the difficulty,
+the more blank spaces you get.
+When you think you have the right number in a cell, press enter on the cell to lock it in.
+The game will check your answers in the end and give you a endscreen based on whether you win or lose.
