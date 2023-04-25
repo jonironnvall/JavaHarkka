@@ -16,6 +16,7 @@ public class difficultyGUI implements ActionListener {
     private static JButton beginnerButton;         /** Initializing buttons for the different difficulties */
     private static JButton casualButton;
     private static JButton advancedButton;
+    // private static JButton instButton;
    // private static Container con = getContentPane();
 
     public void main (String[]args){
@@ -39,6 +40,7 @@ public class difficultyGUI implements ActionListener {
 
         userChoice=new JLabel("");                             /** Text label */
         userChoice.setBounds(80,50,80,10);
+        // panel.add(userChoice);
                                             /** Adding label to the panel aka the layout */
 
         beginnerButton = new JButton("Beginner");
@@ -55,6 +57,10 @@ public class difficultyGUI implements ActionListener {
         advancedButton.setBounds(10,120,80,25);     /** Button placement and size customization */
         advancedButton.addActionListener(new difficultyGUI());
         panel.add(advancedButton);                                 /** Adding button to the panel */
+
+        // instButton = new JButton("Instructions");
+        // instButton.setBounds(80,140,80,25);
+        // instButton.addActionListener(new difficultyGUI());
 
         
         frame.setVisible(true);
@@ -85,6 +91,24 @@ public class difficultyGUI implements ActionListener {
             frame.setVisible(false);            /** Here we set the difficulty window to close when user has chosen a level */
 
         }
+       // else if (e.getSource()==instButton) {
+
+    //     userChoice.setText("You chose to see the instructions");
+    //  try {
+    //      File sdkIns = new File("sdkInstruction.txt");
+    //      Scanner sc = new Scanner(sdkIns);
+    //      while (sc.hasNextLine) {
+    //          String instr = sc.nextLine();
+    //          String instru += instr + " ";
+    //          userChoice.setText("You chose to see the instructions");
+    //      }
+    //  catch (Exception x) {
+    //      System.out.println("Ei toimi :D");    
+    //  } 
+
+    // }
+            
+    }
         /**These if statements are here to determine the next step in the program: 
          * Which ever button the user presses will lead them to a different difficulty level sudoku
          * What kinds of return values could we assign here to determine the grid generation according to level selection?
