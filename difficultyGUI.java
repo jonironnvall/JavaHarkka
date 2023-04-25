@@ -4,6 +4,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 
 import javax.swing.*;
 public class difficultyGUI implements ActionListener {
@@ -16,7 +20,8 @@ public class difficultyGUI implements ActionListener {
     private static JButton beginnerButton;         /** Initializing buttons for the different difficulties */
     private static JButton casualButton;
     private static JButton advancedButton;
-    // private static JButton instButton;
+    private static JButton instButton;
+    private static JTextArea jTextArea1;
    // private static Container con = getContentPane();
 
     public void main (String[]args){
@@ -40,7 +45,7 @@ public class difficultyGUI implements ActionListener {
 
         userChoice=new JLabel("");                             /** Text label */
         userChoice.setBounds(80,50,80,10);
-        // panel.add(userChoice);
+        panel.add(userChoice);
                                             /** Adding label to the panel aka the layout */
 
         beginnerButton = new JButton("Beginner");
@@ -58,9 +63,14 @@ public class difficultyGUI implements ActionListener {
         advancedButton.addActionListener(new difficultyGUI());
         panel.add(advancedButton);                                 /** Adding button to the panel */
 
-        // instButton = new JButton("Instructions");
-        // instButton.setBounds(80,140,80,25);
-        // instButton.addActionListener(new difficultyGUI());
+        instButton = new JButton("Instructions");
+        instButton.setBounds(80,140,80,25);
+        instButton.addActionListener(new difficultyGUI());
+        panel.add(instButton);
+
+        jTextArea1 = new JTextArea();
+        jTextArea1.setBounds(800, 500, 100, 100);
+        panel.add(jTextArea1);
 
         
         frame.setVisible(true);
@@ -91,24 +101,26 @@ public class difficultyGUI implements ActionListener {
             frame.setVisible(false);            /** Here we set the difficulty window to close when user has chosen a level */
 
         }
-       // else if (e.getSource()==instButton) {
+        else if (e.getSource()==instButton) {
 
-    //     userChoice.setText("You chose to see the instructions");
-    //  try {
-    //      File sdkIns = new File("sdkInstruction.txt");
-    //      Scanner sc = new Scanner(sdkIns);
-    //      while (sc.hasNextLine) {
-    //          String instr = sc.nextLine();
-    //          String instru += instr + " ";
-    //          userChoice.setText("You chose to see the instructions");
-    //      }
-    //  catch (Exception x) {
-    //      System.out.println("Ei toimi :D");    
-    //  } 
+         userChoice.setText("");
+         File sdkInst = new File("sdkInstruction.txt");
+         String sdkInstruction = sdkInst.getAbsolutePath();
+      try {
+        FileReader reader = new FileReader(sdkInstruction);
+        BufferedReader br = new BufferedReader(reader);
+        jTextArea1.read(br, null);
+        br.close();
+        jTextArea1.requestFocus();
+        }
+      catch (Exception x) {
+          System.out.println("Ei toimi :D");    
+        } 
 
-    // }
-            
     }
+     
+}}
+
         /**These if statements are here to determine the next step in the program: 
          * Which ever button the user presses will lead them to a different difficulty level sudoku
          * What kinds of return values could we assign here to determine the grid generation according to level selection?
@@ -116,6 +128,6 @@ public class difficultyGUI implements ActionListener {
          */
 
 
-    }
     
-}
+    
+

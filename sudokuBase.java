@@ -9,7 +9,11 @@ import sudokuLogic.gameGenerator;
 
 import javax.lang.model.type.NullType;
 import javax.swing.*;
-
+/**
+    * sudokuBase implements ActionListener adds this class as the actionlistener every action
+    * happening in this class is tied to the
+    * actionperformed method and should be handled there
+    */
 public class sudokuBase implements ActionListener {
     private static JFrame frame;
     private static JPanel panel;
@@ -22,7 +26,13 @@ public class sudokuBase implements ActionListener {
     private static JLabel machineNumber;
     private static boolean[][] numberPlacements;
     private static JButton submit;
-
+/** generateGrid generates a sudokugrid and fills it with numbers so that it can be solved. It has some visual effects as well.
+     * It has a returnarrayonly as a parameter so that the return value of the solved sudokunumbers can be accessed without calling the method again.
+     * 
+     * @param returnArrayOnly
+     * @return
+    */
+    
     public int[][] generateGrid(int sudokuSize, boolean returnArrayOnly) {
         int[][] solvedSudokuNumbers = sudokuLogic.gameGenerator.solvedGameGeneration(); /** fully filled array */
         int[][] sudokuNumbers = sudokuLogic.gameGenerator.unsolveGameBeginner(solvedSudokuNumbers);/** unsolved array */
@@ -38,9 +48,8 @@ public class sudokuBase implements ActionListener {
         
 
         for (int row = 0; row < 9; row++) {
-            frame.setLayout(new GridLayout(9, 9, 9, 6)); /** This creates the sudoku grid */
-            Random rand = new Random();
-            int myRandom = rand.nextInt(9) + 1;
+            frame.setLayout(new GridLayout(9, 9, 9, 6)); 
+            /** This creates the sudoku grid */
             /**
              * Random number generator could be an external method, but it does function
              * here as well it still needs to have boundaries and limits set so that it
@@ -120,25 +129,14 @@ public class sudokuBase implements ActionListener {
             JTextField textField = (JTextField) inputSource; /** using the getText() method. */
         
 
-            int right = 0;
-            int sudokuNumber = Integer.parseInt(textField.getText()); 
-            for(int x = 0; x <= 9; x++){
-                for(int y = 0;y <=9; y++){
-                    if(sudokuNumbers[x][y] == solvedGame[x][y]){
-                    right++;
-                    if(right==81){
-                        endScreenWin win =new endScreenWin();
-                        win.win();
-                    }
-                    }
-                        }
-                    }
-                
+                }
+
+        
             
 
-            System.out.println(sudokuNumber); /**
+            System.out.println(); /**
                                                * This is a terminal print to check if this code snippet works properly
                                                */
         }
     }
-}
+
