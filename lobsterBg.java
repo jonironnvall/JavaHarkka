@@ -10,13 +10,13 @@ public class lobsterBg extends JFrame{
     public lobsterBg(){
         
         //File img = new File ("LobsterSudoku.jpeg"); /** Creating a File of the image */
-        JLabel lobsterBackground = new JLabel(new ImageIcon("LobsterSudoku.jpeg")); /** Reading image from file */
         setSize(800,500);    /** Setting Size of imagewindow */
         setLocationRelativeTo(null);
 	    setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setContentPane(new JLabel(new ImageIcon("LobsterSudoku.jpeg")));
+        
 	    //setVisible(true);              /** Setting the background visible */
-        //setLayout(new BorderLayout());                       /** Setting a new layout */
-        add(lobsterBackground);
+        setLayout(new FlowLayout());                       /** Setting a new layout */
         //setLayout(new FlowLayout());
 
     }
