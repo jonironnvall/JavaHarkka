@@ -2,6 +2,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Container;
+import java.awt.FlowLayout;
 
 import javax.swing.*;
 public class difficultyGUI implements ActionListener {
@@ -14,28 +16,30 @@ public class difficultyGUI implements ActionListener {
     private static JButton beginnerButton;         /** Initializing buttons for the different difficulties */
     private static JButton casualButton;
     private static JButton advancedButton;
+   // private static Container con = getContentPane();
 
     public void main (String[]args){
-        frame = new JFrame();
-        frame.setSize(350,200);    /** Frame is the window */
+        frame = new lobsterBg();
+        frame.setSize(800,500);    /** Frame is the window */
+        frame.setResizable(false);
 
         panel = new JPanel();  /** Panel is the layout */
-        panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));  /** Setting the border of the panel */
+        //panel.setBorder(BorderFactory.createEmptyBorder(30,30,10,30));  /** Setting the border of the panel */
         
-        frame.add(panel, BorderLayout.CENTER);                     /** Border layout still in progress, but is set to center for now */
+        
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      /** Setting what happends from the X */
         frame.setTitle("LobsterSudoku");
-        frame.setVisible(true);                                 /** Makes the window "Excist" */
+        //frame.setVisible(true);                                 /** Makes the window "Excist" */
 
         difficultyLabel=new JLabel("Choose difficulty");       /** Text label */
-        difficultyLabel.setBounds(0,10,90,10);
+        //difficultyLabel.setBounds(0,10,90,10);
         //panel.setLayout(new GridLayout());  /** Possible solution to the placement issue */
-        //panel.add(difficultyLabel);   /** Adding label to the panel aka the layout. I commented this away until the placement is decided as this is intefearing with the placement of the buttons*/
+        panel.add(difficultyLabel);   /** Adding label to the panel aka the layout. I commented this away until the placement is decided as this is intefearing with the placement of the buttons*/
 
         userChoice=new JLabel("");                             /** Text label */
         userChoice.setBounds(80,50,80,10);
-        panel.add(userChoice);                                       /** Adding label to the panel aka the layout */
+                                            /** Adding label to the panel aka the layout */
 
         beginnerButton = new JButton("Beginner");
         beginnerButton.setBounds(80,80,80,25);     /** Button placement and size customization */
@@ -51,6 +55,10 @@ public class difficultyGUI implements ActionListener {
         advancedButton.setBounds(10,120,80,25);     /** Button placement and size customization */
         advancedButton.addActionListener(new difficultyGUI());
         panel.add(advancedButton);                                 /** Adding button to the panel */
+
+        
+        frame.setVisible(true);
+        frame.add(panel);                     /** Border layout still in progress, but is set to center for now */
 
     }
     public void actionPerformed(ActionEvent e) {                   /** actionPerformed method is tied to the implemented actionlistener
