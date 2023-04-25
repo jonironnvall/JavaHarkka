@@ -4,7 +4,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout; /**imports needed for GUI */
 import java.util.Random;
+import sudokuLogic.gameGenerator;
 
+
+import javax.lang.model.type.NullType;
 import javax.swing.*;
 
 public class sudokuBase implements ActionListener {
@@ -20,7 +23,10 @@ public class sudokuBase implements ActionListener {
     private static boolean[][] numberPlacements;
     private static JButton submit;
 
-    public void generateGrid(int sudokuSize) {
+    public int[][] generateGrid(int sudokuSize, boolean returnArrayOnly) {
+        int[][] solvedSudokuNumbers = sudokuLogic.gameGenerator.solvedGameGeneration(); /** fully filled array */
+        int[][] sudokuNumbers = sudokuLogic.gameGenerator.unsolveGameBeginner(solvedSudokuNumbers);/** unsolved array */
+        if(!returnArrayOnly){
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
@@ -29,9 +35,7 @@ public class sudokuBase implements ActionListener {
 
         textFields = new JTextField[9][9]; /** Setting up the array */
         numberPlacements = new boolean[9][9]; /** Setting up the placements of the numbers */
-        int[][] solvedSudokuNumbers = sudokuLogic.gameGenerator.solvedGameGeneration(); /** fully filled array */
-        int[][] sudokuNumbers = sudokuLogic.gameGenerator.unsolveGameBeginner(solvedSudokuNumbers);
-        /** unsolved array */
+        
 
         for (int row = 0; row < 9; row++) {
             frame.setLayout(new GridLayout(9, 9, 9, 6)); /** This creates the sudoku grid */
@@ -84,6 +88,9 @@ public class sudokuBase implements ActionListener {
         // value to determine the said coordinates of the values that need to be checked
         // for */
     }
+    return solvedSudokuNumbers;
+
+}
 
     /**
      * NEVERMIND!! This method apparelty has to be void or it affects the
@@ -100,10 +107,9 @@ public class sudokuBase implements ActionListener {
 
     }
 
-    public void actionPerformed(ActionEvent a) { /**
-                                                  * This is here just in case we build the GUI onto this file and not a
-                                                  * separate one
-                                                  */
+    public void actionPerformed(ActionEvent a) {
+    int[][] solvedGame = generateGrid(4, true);
+    final int[][] sudokuNumbers = sudokuLogic.gameGenerator.unsolveGameBeginner(solvedGame);
 
         Object inputSource = a.getSource();
         /** Here we are making an object out of the source of the action */
@@ -114,11 +120,22 @@ public class sudokuBase implements ActionListener {
             JTextField textField = (JTextField) inputSource; /** using the getText() method. */
         
 
+            int right = 0;
+            int sudokuNumber = Integer.parseInt(textField.getText()); 
+            for(int x = 0; x <= 9; x++){
+                for(int y = 0;y <=9; y++){
+                    if(sudokuNumbers[x][y] == solvedGame[x][y]){
+                    right++;
+                    if(right==81){
+                        endScreenWin win =new endScreenWin();
+                        win.win();
+                    }
+                    }
+                        }
+                    }
+                
+            
 
-            int sudokuNumber = Integer.parseInt(textField.getText()); /**
-                                                                       * Here the textfield is parsed to convert the
-                                                                       * string to an integer
-                                                                       */
             System.out.println(sudokuNumber); /**
                                                * This is a terminal print to check if this code snippet works properly
                                                */

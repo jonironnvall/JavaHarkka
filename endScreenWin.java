@@ -13,7 +13,7 @@ public class endScreenWin implements ActionListener {
 
     private static JButton menuButton;      /** Initializing button for going back to main menu */
 
-    public void main(String[] args) {
+    public void win (){
         frame = new JFrame();
         frame.setSize(350, 200); /** Frame and its default size */
 
